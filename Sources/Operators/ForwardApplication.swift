@@ -22,6 +22,12 @@ public func |> <A>(_ a: inout A, _ f: @escaping (inout A) -> Void) {
 	f(&a)
 }
 
+public func |> <A>(_ a: A, _ f: @escaping (inout A) -> Void) -> A {
+	var copy = a
+	f(&copy)
+	return copy
+}
+
 final class MyView {
 	var backgroundColor: String = ""
 	var borderColor: String = ""
