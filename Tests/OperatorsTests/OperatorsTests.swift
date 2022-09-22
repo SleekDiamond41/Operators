@@ -34,7 +34,7 @@ final class OperatorsTests: XCTestCase {
 		XCTAssertEqual(actual, expected)
 	}
 	
-	@available(macOS 12.0, *)
+	@available(macOS 12.0, iOS 15.0, *)
 	func testSomeAsyncStuff_withPublishers() async {
 		var actual = [Int]()
 		let expected = [1, 2, 3]

@@ -1,18 +1,32 @@
 import Foundation
+import PrecedenceGroups
 
 
-precedencegroup EffectfulComposition {
-	associativity: left
-	higherThan: BackwardComposition
+public func >=> <A, B, C>(_ f: @escaping (A) -> (B, [String]), _ g: @escaping (B) -> (C, [String])) -> (A) -> (C, [String]) {
+	return { a in
+		let (b, effects) = f(a)
+		let (c, moreEffects) = g(b)
+		return (c, effects + moreEffects)
+	}
 }
 
-infix operator >=>: EffectfulComposition
+// MARK: - Optionals
 
-
-public func >=> <A, B>(_ f: @escaping (A) -> B, _ g: @escaping (B) -> Void) -> (A) -> B {
+public func >=> <A, B, C>(_ f: @escaping (A) -> B?, _ g: @escaping (B) -> C?) -> (A) -> C? {
 	return { a in
-		let b = f(a)
-		g(b)
-		return b
+		f(a).flatMap(g)
+	}
+}
+
+public func >=> <A, B, C>(_ f: @escaping (A) -> B?, _ g: @escaping (B) -> C) -> (A) -> C? {
+	return { a in
+		f(a).map(g)
+	}
+}
+
+// MARK: - Arrays
+public func >=> <A, B, C>(_ f: @escaping (A) -> [B], _ g: @escaping (B) -> [C]) -> (A) -> [C] {
+	return { a in
+		f(a).flatMap(g)
 	}
 }

@@ -46,6 +46,8 @@ incr(1)
 var mutableNumber = 3
 mutableNumber |> mutatingIncr
 
+let result = mutableNumber |> mutatingIncr
+
 // Note: These examples are simplistic. In cases as shown above, it would likely
 // be more efficient to simply use the built-in syntax of Swift. However,
 // these individual pages exist to show each operator in its simplest form. See

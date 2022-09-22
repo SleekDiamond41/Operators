@@ -1,47 +1,37 @@
 import Foundation
-
-
-precedencegroup ForwardApplication {
-	associativity: left
-	higherThan: AssignmentPrecedence
-}
-
-infix operator |>: ForwardApplication
+import PrecedenceGroups
 
 
 public func |> <A, B>(_ a: A, _ f: @escaping (A) -> B) -> B {
 	f(a)
 }
 
-public func |> <A>(_ a: A, _ f: @escaping (A) -> Void) -> A {
+public func |> <A: AnyObject>(_ a: A, _ f: @escaping (A) -> Void) -> A {
 	f(a)
 	return a
 }
 
-public func |> <A>(_ a: inout A, _ f: @escaping (inout A) -> Void) {
+public func |> <A>(_ a: inout A, _ f: (inout A) -> Void) {
 	f(&a)
 }
 
-public func |> <A>(_ a: A, _ f: @escaping (inout A) -> Void) -> A {
+@_disfavoredOverload
+public func |> <A>(_ a: A, _ f: (inout A) -> Void) -> A {
 	var copy = a
 	f(&copy)
 	return copy
 }
 
-final class MyView {
-	var backgroundColor: String = ""
-	var borderColor: String = ""
-	var borderThickness: Double = 0
+public func toInout<T>(_ f: @escaping (T) -> T) -> (inout T) -> Void {
+	{ t in
+		t = f(t)
+	}
 }
 
-func borderStyle(_ view: MyView) {
+public func fromInout<T>(_ f: @escaping (inout T) -> Void) -> (T) -> T {
+	{ t in
+		var copy = t
+		f(&copy)
+		return copy
+	}
 }
-
-func someBackgroundStyle(_ view: MyView) {
-}
-
-let view = MyView()
-|> borderStyle <> someBackgroundStyle
-|> get(\.backgroundColor)
-
-

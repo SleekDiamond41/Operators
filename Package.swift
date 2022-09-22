@@ -4,25 +4,56 @@
 import PackageDescription
 
 let package = Package(
-    name: "Operators",
-    products: [
-        .library(
-            name: "Operators",
-            targets: ["Operators"]),
-    ],
-    dependencies: [
-    ],
-    targets: [
-        .target(
-            name: "Operators",
-            dependencies: [
-						]),
-				
-				// MARK: - Tests
-        .testTarget(
-            name: "OperatorsTests",
-            dependencies: [
-							"Operators",
-						]),
-    ]
+	name: "Operators",
+	platforms: [
+		.iOS(.v14),
+		.macOS(.v11),
+	],
+	products: [
+		.library(
+			name: "AsyncOperators",
+			targets: ["AsyncOperators"]),
+		.library(
+			name: "Operators",
+			targets: ["Operators"]),
+		.library(
+			name: "PrecedenceGroups",
+			targets: ["PrecedenceGroups"]),
+	],
+	dependencies: [
+	],
+	targets: [
+		.target(
+			name: "AsyncOperators",
+			dependencies: [
+				"FunctionalHelpers",
+				"PrecedenceGroups",
+			]),
+		.target(
+			name: "FunctionalHelpers",
+			dependencies: [
+			]),
+		.target(
+			name: "Operators",
+			dependencies: [
+				"FunctionalHelpers",
+				"PrecedenceGroups",
+			]),
+		.target(
+			name: "PrecedenceGroups",
+			dependencies: [
+			]),
+		
+		// MARK: - Tests
+		.testTarget(
+			name: "AsyncOperatorsTests",
+			dependencies: [
+				"AsyncOperators",
+			]),
+		.testTarget(
+			name: "OperatorsTests",
+			dependencies: [
+				"Operators",
+			]),
+	]
 )

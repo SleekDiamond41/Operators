@@ -1,12 +1,5 @@
 import Foundation
-
-
-precedencegroup BackwardComposition {
-	associativity: left
-	higherThan: ForwardComposition
-}
-
-infix operator <<<: BackwardComposition
+import PrecedenceGroups
 
 
 public func <<< <A, B, C>(g: @escaping (B) -> C, f: @escaping (A) -> B) -> (A) -> C {

@@ -1,19 +1,12 @@
 import Foundation
-
-
-precedencegroup SingleTypeComposition {
-	associativity: left
-	higherThan: EffectfulComposition
-}
-
-infix operator <>: SingleTypeComposition
+import PrecedenceGroups
 
 
 public func <><A>(_ f: @escaping (A) -> A, _ g: @escaping (A) -> A) -> (A) -> A {
 	f >>> g
 }
 
-public func <><A>(_ f: @escaping (A) -> Void, _ g: @escaping (A) -> Void) -> (A) -> Void {
+public func <><A: AnyObject>(_ f: @escaping (A) -> Void, _ g: @escaping (A) -> Void) -> (A) -> Void {
 	{ a in
 		f(a)
 		g(a)

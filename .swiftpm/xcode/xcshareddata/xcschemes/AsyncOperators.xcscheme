@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1320"
+   LastUpgradeVersion = "1340"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,37 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Operators"
-               BuildableName = "Operators"
-               BlueprintName = "Operators"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "AsyncOperators"
                BuildableName = "AsyncOperators"
                BlueprintName = "AsyncOperators"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "PrecedenceGroups"
-               BuildableName = "PrecedenceGroups"
-               BlueprintName = "PrecedenceGroups"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -60,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OperatorsTests"
-               BuildableName = "OperatorsTests"
-               BlueprintName = "OperatorsTests"
+               BlueprintIdentifier = "AsyncOperatorsTests"
+               BuildableName = "AsyncOperatorsTests"
+               BlueprintName = "AsyncOperatorsTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -88,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Operators"
-            BuildableName = "Operators"
-            BlueprintName = "Operators"
+            BlueprintIdentifier = "AsyncOperators"
+            BuildableName = "AsyncOperators"
+            BlueprintName = "AsyncOperators"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>
