@@ -3,9 +3,15 @@ import Foundation
 import XCTest
 @testable import Operators
 
+func mutatingIncr(_ num: inout Int) {
+	num += 1
+}
+
 final class OperatorsTests: XCTestCase {
 	
 	func testExample() throws {
+		var mutableNumber = 3
+		let value = mutableNumber |> (mutatingIncr |> fromInout)
 	}
 	
 	func getThings() async -> [Int] {

@@ -21,6 +21,22 @@ precedencegroup BackwardComposition {
 // >>>
 precedencegroup ForwardComposition {
 	associativity: left
+	higherThan: ToInoutComposition
+}
+
+// <>>
+precedencegroup FromInoutComposition {
+	higherThan: ToInoutComposition
+}
+
+// <<>
+precedencegroup ToInoutComposition {
+	higherThan: BackwardApplication
+}
+
+// |>>
+precedencegroup MutatingForwadApplication {
+	associativity: left
 	higherThan: BackwardApplication
 }
 
