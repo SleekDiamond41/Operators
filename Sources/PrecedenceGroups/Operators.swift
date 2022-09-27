@@ -10,7 +10,7 @@ infix operator >>>: ForwardComposition
 
 infix operator <>>: FromInoutComposition
 
-infix operator <<>: ToInoutComposition
+infix operator ><>: ToInoutComposition
 
 infix operator |>>: MutatingForwadApplication
 
