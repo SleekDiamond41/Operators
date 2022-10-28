@@ -12,10 +12,16 @@ let package = Package(
 	products: [
 		.library(
 			name: "AsyncOperators",
-			targets: ["AsyncOperators"]),
+			targets: [
+				"AsyncOperators",
+				"FunctionalHelpers",
+			]),
 		.library(
 			name: "Operators",
-			targets: ["Operators"]),
+			targets: [
+				"FunctionalHelpers",
+				"Operators",
+			]),
 		.library(
 			name: "PrecedenceGroups",
 			targets: ["PrecedenceGroups"]),
