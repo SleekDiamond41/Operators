@@ -2,6 +2,7 @@ import Combine
 import Foundation
 import XCTest
 @testable import Operators
+import FunctionalHelpers
 
 func mutatingIncr(_ num: inout Int) {
 	num += 1

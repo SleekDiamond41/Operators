@@ -43,3 +43,17 @@ public func zurry<A, B, C>(_ a: A) -> (@escaping (A) -> (B) -> C) -> (B) -> C {
 		}
 	}
 }
+
+public func fromInout<Value>(_ f: @escaping (inout Value) -> Void) -> (Value) -> Value {
+	{ value in
+		var value = value
+		f(&value)
+		return value
+	}
+}
+
+public func toInout<Value>(_ f: @escaping (Value) -> Value) -> (inout Value) -> Void {
+	{ value in
+		value = f(value)
+	}
+}
