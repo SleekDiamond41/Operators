@@ -19,6 +19,18 @@ public func set<Root, Value>(_ keyPath: WritableKeyPath<Root, Value?>, _ value: 
 	set(keyPath, { $0 = value })
 }
 
+public func set<Root, Value>(_ keyPath: WritableKeyPath<Root, Value>, _ mutation: @escaping (inout Value) -> Void) -> (Root) -> Root {
+	{ root in
+		var root = root
+		mutation(&root[keyPath: keyPath])
+		return root
+	}
+}
+
+public func set<Root, Value>(_ keyPath: WritableKeyPath<Root, Value>, _ value: Value) -> (Root) -> Root {
+	set(keyPath, { $0 = value })
+}
+
 
 // MARK: - Reference Types
 public func set<Root, Value>(_ keyPath: ReferenceWritableKeyPath<Root, Value>, _ mutation: @escaping (inout Value) -> Void) -> (Root) -> Void {
