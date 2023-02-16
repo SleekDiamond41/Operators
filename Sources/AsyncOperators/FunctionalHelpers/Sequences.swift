@@ -90,10 +90,14 @@ public func mapConcurrent<C, T>(priority: TaskPriority? = nil, batchSize batch: 
 public struct BatchSize {
 	let rawValue: Int
 	
-	public static let small 			= BatchSize(rawValue: 63)
-	public static let medium 			= BatchSize(rawValue: 255)
-	public static let large 			= BatchSize(rawValue: 1023)
-	public static let noBatching 	= BatchSize(rawValue: .max)
+	public init(_ rawValue: Int) {
+		self.rawValue = rawValue
+	}
+	
+	public static let small 			= BatchSize(63)
+	public static let medium 			= BatchSize(255)
+	public static let large 			= BatchSize(1023)
+	public static let noBatching 	= BatchSize(.max)
 	
 	/// Iterates over a sequence in appropriate batches, collecting results into some result type.
 	///
