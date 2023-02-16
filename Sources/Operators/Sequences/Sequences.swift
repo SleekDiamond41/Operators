@@ -59,7 +59,7 @@ public func mapConcurrent<C, T>(priority: DispatchQoS.QoSClass = .utility, batch
 				
 				accessQueue.async {
 					let lowerBound = batchOffset * Int(batchSize)
-					let upperBound = lowerBound + Int(batchSize)
+					let upperBound = Swift.min(lowerBound + Int(batchSize), sourceCollection.count)
 					
 					result[lowerBound..<upperBound] = ArraySlice(batchResults)
 					
