@@ -55,6 +55,7 @@ let package = Package(
 			name: "AsyncOperatorsTests",
 			dependencies: [
 				"AsyncOperators",
+				"Operators",
 			]),
 		.testTarget(
 			name: "OperatorsTests",
