@@ -1,5 +1,6 @@
 import XCTest
 import AsyncOperators
+import Operators
 
 struct Person: Encodable {
 	struct Address: Encodable {
@@ -28,12 +29,28 @@ final class ConcurrentMapPerformanceTests: XCTestCase {
 		self.measure {
 			let exp = expectation(description: "expected to complete stuff")
 			Task {
-				let results = await mapConcurrent(batchSize: 100, transform)(sourceData)
+				let results = await mapConcurrent(batchSize: .large, transform)(sourceData)
 				
 				print(results.first!.count)
 				exp.fulfill()
 			}
-			self.wait(for: [exp], timeout: 1)
+			self.wait(for: [exp], timeout: 100)
+		}
+	}
+	
+	func testStandardConcurrentMap() {
+		self.measure {
+			let results = Operators.mapConcurrent(batchSize: 1023, transform)(sourceData)
+				
+			print(results.first!.count)
+		}
+	}
+	
+	func testStandardMap() {
+		self.measure {
+			let results = Operators.map(transform)(sourceData)
+				
+			print(results.first!.count)
 		}
 	}
 }

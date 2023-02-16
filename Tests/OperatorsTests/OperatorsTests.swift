@@ -10,9 +10,9 @@ func mutatingIncr(_ num: inout Int) {
 
 final class OperatorsTests: XCTestCase {
 	
-	func testExample() throws {
-		var mutableNumber = 3
-		let value = mutableNumber |> (mutatingIncr |> fromInout)
+	func testSyntaxCanBeResolved() throws {
+		let value = 3 |> mutatingIncr
+		XCTAssertEqual(value, 4)
 	}
 	
 	func getThings() async -> [Int] {
